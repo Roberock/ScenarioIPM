@@ -1,0 +1,13 @@
+Matalb functions to compute the bounds
+
+computes a-priori bounds for a convex optimization program given the number of discarded samples 
+getConfidence_ConvexDiscard.m
+
+computes a-posteriori wait and judge bound for a convex optimization program 
+getWaitandJudgeEpsilon.m
+
+computes a-posteriori lower and upper bounds for a convex optimization program with constraints relaxation
+epsLU_fast.m
+
+computes a-posteriori upper bound for a non convex optimization program 
+epsLU_fast.m
