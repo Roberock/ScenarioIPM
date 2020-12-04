@@ -1,6 +1,6 @@
 #  Classdef Interval Predictor Model
 
-Interval Predictive Model gives an interval-valued characterization of the uncertainty affecting the stochastic process
+Interval Predictive Model (IPM) gives an interval-valued characterization of the uncertainty affecting the stochastic process
 This repository presents a matlab class to optimized the bounding functions defining an IPM.
 The reliability of the optmized predictor (probability that future samples will fall outside from the predictive bounds) is formally bounded thanks to scenario theory
 
