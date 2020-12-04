@@ -4,7 +4,7 @@ Interval Predictive Model gives an interval-valued characterization of the uncer
 This repository presents a matlab class to optimized the bounding functions defining an IPM 
 
 
- % an IPM is a rule I(x;theta) which assign to an input x an interval
+    % an IPM is a rule I(x;theta) which assign to an input x an interval
     % for a dependent quantity y.
     % two bounding functions deinfe I(x;theta)=[fl(x;theta);fu(x;theta)]
     % where \theta are the fitting coefficients to be optimized and,
