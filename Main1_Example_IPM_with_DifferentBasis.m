@@ -1,4 +1,4 @@
-%% For Adolphus Lye
+
 clc
 close all
 clear variables
