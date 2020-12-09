@@ -54,7 +54,12 @@ The reliability of the optmized predictor (probability that future samples will 
      s.t.    f_u(xi;theta)>=CVAR(y_i,alpha) for all i=1,..,D_{N}
             f_l(xi;theta)<=CVAR(y_i,1-alpha) for all i=1,..,D_{N}
     
-    
+   
+ <p align="center">
+  <img src="./figs/IPM_Example_hard_vs_soft_Constraints.png" alt="Size Limit CLI" width="650">
+</p>
+   
+   
   ***Example INPUTS:
   
     Xdn vector of explanatory variables (1-Dimensional [1xNsamples])
