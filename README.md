@@ -4,8 +4,12 @@ Interval Predictive Model (IPM) gives an interval-valued characterization of the
 This repository presents a matlab class to optimized the bounding functions defining an IPM.
 The reliability of the optmized predictor (probability that future samples will fall outside from the predictive bounds) is formally bounded thanks to scenario theory
 
-
-
+<p align="center">
+  <img src="./figs/IPM_Example.png" alt="Size Limit CLI" width="650">
+</p>
+ 
+ 
+```
     % an IPM is a rule I(x;theta) which assign to an input x an interval
     % for a dependent quantity y.
     % two bounding functions deinfe I(x;theta)=[fl(x;theta);fu(x;theta)]
@@ -14,7 +18,8 @@ The reliability of the optmized predictor (probability that future samples will 
     
     % IPM are built given-data from a set of uncertain scenarios
     % D_{N}={(x1,y1),(x2,y2),..., (xN,yN)} assumed to be iid
-    
+```    
+
     % Different methods are available in this class to optimize I(x;theta)
     % 1) full-data enclosure (no exeption) and minimization of the area
     %    between the bounding functions
