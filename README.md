@@ -74,7 +74,7 @@ The reliability of the optmized predictor (probability that future samples will 
      propreties needed to evaluate scenario-based reliabiity/error bounds
 ```
 
-### Example Scenaro-based Reliability Bounds:
+### How to use? A simple example 
 ```Matlab
 % Generate scenarios 
 Nsamples=400;
@@ -94,21 +94,24 @@ IPM=IPM_Model('degreeup', 6,'degreelow',6 ,...
     'Xsup',Xsupport, 'Ysup',Ysupport,'options',options);
     
     
-    %% hard-constrained solver
+%% 1) hard-constrained solver
 Design=IPM.DesingIPM_hard_constrained_noExeptions(X,Y);
-
+Area(1)=Design.Area;
 X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
 I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)';% predict method
 I_predict_denorm= IPM.De_Normalize(I_predict,min(Y),max(Y));
+
 %plot
 subplot(2,2,1)
 plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on; grid on;
 scatter(X,Y,'.b')
 title('hard-constrained')
-%% hard-constrained with discarded samples
+
+%% 2) hard-constrained with discarded samples
 Ndiscarded=round(Nsamples/10); % remove 10% of the saples
 Design=IPM.DesingIPM_hard_constrained_discarded(X,Y,Ndiscarded);
+Area(2)=Design.Area;
 
 X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
 I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)'; % optimize the model
@@ -119,7 +122,9 @@ plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on;  grid on;
 scatter(X,Y,'.b')
 title('hard-constrained discarded')
-%% minimax layer
+
+
+%% 3) minimax layer
 Design=IPM.DesingIPM_MinMaxLayer(X,Y);
 X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
 I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)'; % optimize the model
@@ -135,7 +140,8 @@ hold on;  grid on;
 plot(X_linpace,I_predict_denorm50,'--k','LineWidth',1.5);
 scatter(X,Y,'.b')
 title('hard-constrained minmax')
-%% soft constrained layer
+
+%% 4) soft constrained layer
 CostofViolations=0.1;
 Design=IPM.DesingIPM_SoftConstraied(X,Y,CostofViolations); % optimize the model
  
@@ -151,3 +157,7 @@ scatter(X,Y,'.b')
 title('soft-constrained')
 ```
 
+
+<p align="center">
+  <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="650">
+</p>
