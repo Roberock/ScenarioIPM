@@ -181,5 +181,5 @@ title('soft-constrained')
 
 
 <p align="center">
-  <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="650">
+  <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="750">
 </p>
