@@ -60,20 +60,94 @@ The reliability of the optmized predictor (probability that future samples will 
 </p>
    
    
-### Example INPUTS:
+### A simple Example :
+  ```
+  %inputs 
   
     Xdn vector of explanatory variables (1-Dimensional [1xNsamples])
     Ydn vector of dependent variables (1-Dimensional [1xNsamples])
-    OUTPUTS:
-      a structure named Design containing the following fields
+   % OUTPUTS: a structure named Design containing the following fields
     
      Design.Area: The area betweeen the optimized (accuracy)
      Design.OptTheta: optimized fitting coefficients defining the bounds
      Design.Generalization: Compelxity of the solution and other
      propreties needed to evaluate scenario-based reliabiity/error bounds
-
+```
 
 ### Example Scenaro-based Reliability Bounds:
 
+% Generate scenarios 
+Nsamples=400;
+X=unifrnd(-3,10,[1,Nsamples]);
+Y= (X.*rand([1,Nsamples])).^2+X.*exprnd(2,[1,Nsamples]);
+
+
+% prepare IPM object
+Xsupport=[min(X),max(X)];
+Ysupport=[min(Y),max(Y)];
+options=optimoptions('fmincon','MaxIterations',1e3,'ConstraintTolerance',1e-4,...
+    'StepTolerance',1e-6,'MaxFunctionEvaluations',1e4,...
+    'Display','iter','Algorithm','sqp');
+
+IPM=IPM_Model('degreeup', 6,'degreelow',6 ,...
+    'basis','poly', 'Length',[],...
+    'Xsup',Xsupport, 'Ysup',Ysupport,'options',options);
+    
+    
+    %% hard-constrained solver
+Design=IPM.DesingIPM_hard_constrained_noExeptions(X,Y);
+
+X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
+I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)';% predict method
+I_predict_denorm= IPM.De_Normalize(I_predict,min(Y),max(Y));
+%plot
+subplot(2,2,1)
+plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
+hold on; grid on;
+scatter(X,Y,'.b')
+title('hard-constrained')
+%% hard-constrained with discarded samples
+Ndiscarded=round(Nsamples/10); % remove 10% of the saples
+Design=IPM.DesingIPM_hard_constrained_discarded(X,Y,Ndiscarded);
+
+X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
+I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)'; % optimize the model
+I_predict_denorm= IPM.De_Normalize(I_predict,min(Y),max(Y));
+%plot
+subplot(2,2,2)
+plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
+hold on;  grid on;
+scatter(X,Y,'.b')
+title('hard-constrained discarded')
+%% minimax layer
+Design=IPM.DesingIPM_MinMaxLayer(X,Y);
+X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
+I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)'; % optimize the model
+I_predict1=[I_predict(:,1)-Design.EmpiricalCosts(1) I_predict(:,2)+Design.EmpiricalCosts(1)]; % maximum empirical layer
+I_predict_denorm1= IPM.De_Normalize(I_predict1,min(Y),max(Y));
+I_predict50=[I_predict(:,1)-Design.EmpiricalCosts(50) I_predict(:,2)+Design.EmpiricalCosts(50)]; % maximum empirical layer
+I_predict_denorm50= IPM.De_Normalize(I_predict50,min(Y),max(Y)); 
+
+%plot
+subplot(2,2,3)
+plot(X_linpace,I_predict_denorm1,'k','LineWidth',1.5);
+hold on;  grid on;
+plot(X_linpace,I_predict_denorm50,'--k','LineWidth',1.5);
+scatter(X,Y,'.b')
+title('hard-constrained minmax')
+%% soft constrained layer
+CostofViolations=0.1;
+Design=IPM.DesingIPM_SoftConstraied(X,Y,CostofViolations); % optimize the model
+ 
+X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
+I_predict=IPM.Predict(X_linpace,Design.OptThetalow,Design.OptThetaup)';% predict method
+I_predict_denorm= IPM.De_Normalize(I_predict,min(Y),max(Y));
+
+%plot
+subplot(2,2,4)
+plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
+hold on; grid on;
+scatter(X,Y,'.b')
+title('soft-constrained')
 
 
