@@ -94,7 +94,16 @@ IPM=IPM_Model('degreeup', 6,'degreelow',6 ,...
     'Xsup',Xsupport, 'Ysup',Ysupport,'options',options);
     
     
-%% 1) hard-constrained solver
+%% %% %%  %% %% %% %%  %%  1) hard-constrained solver %% %% %%  %% %% %% %%  %% 
+
+%% %% %%  %% Reliability bounds ( A-priori )
+beta_target=10^-5;
+Ndiscarded=0; % number of discarded samples
+Nd=12; %  number of optimization variables 
+epsilon_apriori=getepsilon_ConvexDiscard(Nsamples,beta_targ,Ndiscarded,Nd) 
+RelBound_apriori=[1-epsilon_apriori,1];
+
+%% optimize the model
 Design=IPM.DesingIPM_hard_constrained_noExeptions(X,Y);
 Area(1)=Design.Area;
 X_linpace=linspace(Xsupport(1),Xsupport(2),10^4);
@@ -107,6 +116,11 @@ plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on; grid on;
 scatter(X,Y,'.b')
 title('hard-constrained')
+
+%% %% %%  %% Reliability bounds ( A-posteriori) 
+SN=Design.Generalization.NSupportConstraints;
+epsilon_aposteriori=getWaitandJudgeEpsilon_fast(SN,Nsamples,beta_target);
+RelBound=[1-epsilon_aposteriori,1];
 
 %% 2) hard-constrained with discarded samples
 Ndiscarded=round(Nsamples/10); % remove 10% of the saples
@@ -122,6 +136,11 @@ plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on;  grid on;
 scatter(X,Y,'.b')
 title('hard-constrained discarded')
+
+%% %% %%  %% Reliability bounds ( A-posteriori) 
+SN=Design.Generalization.NSupportConstraints+Ndiscarded;
+epsilon_aposteriori=getWaitandJudgeEpsilon_fast(SN,Nsamples,beta_target);
+RelBound=[1-epsilon_aposteriori,1];
 
 
 %% 3) minimax layer
@@ -157,10 +176,10 @@ scatter(X,Y,'.b')
 title('soft-constrained')
 
 
-<p align="center">
-  <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="650">
-</p>
-
 
 ```
 
+
+<p align="center">
+  <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="650">
+</p>
