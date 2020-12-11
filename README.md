@@ -155,9 +155,12 @@ plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on; grid on;
 scatter(X,Y,'.b')
 title('soft-constrained')
-```
 
 
 <p align="center">
   <img src="./figs/SimpleExample.png" alt="Size Limit CLI" width="650">
 </p>
+
+
+```
+
