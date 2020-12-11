@@ -35,7 +35,7 @@ The reliability of the optmized predictor (probability that future samples will 
     %    f_u(xi;theta)>=y_i and  f_l(xi;theta)<=y_i for all i in D_{N-No}
     %    f_u(x;theta)>=f_l(x;theta) for all x (up bound dominance)
     
-***3) Minimax layer IPM: minimizes the maximum distance between a regression function and the samples y_i
+** 3) Minimax layer IPM: minimizes the maximum distance between a regression function and the samples y_i
 
     min_{\theta} max_{i=1,..,N} |f_reg(x_i;theta)-y_i|
      f_u(x;theta)>=f_l(x;theta) for all x (up bound dominance)
