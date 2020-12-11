@@ -75,7 +75,7 @@ The reliability of the optmized predictor (probability that future samples will 
 ```
 
 ### Example Scenaro-based Reliability Bounds:
-
+```Matlab
 % Generate scenarios 
 Nsamples=400;
 X=unifrnd(-3,10,[1,Nsamples]);
@@ -149,5 +149,5 @@ plot(X_linpace,I_predict_denorm,'k','LineWidth',1.5);
 hold on; grid on;
 scatter(X,Y,'.b')
 title('soft-constrained')
-
+```
 
