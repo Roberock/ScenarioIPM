@@ -47,7 +47,10 @@ The reliability of the optmized predictor (probability that future samples will 
      \zeta_i>=0 for i=1,...,N  (slack variables)
      f_u(x;theta)>=f_l(x;theta) for all x (up bound dominance)
     
-    
+  <p align="center">
+  <img src="./figs/IPM_Example_hard_vs_soft_Constraints.png" alt="Size Limit CLI" width="650">
+</p>
+      
 ### 5) CVaR method (To be updated)
 
      min_{\theta} Area(theta)
@@ -55,10 +58,7 @@ The reliability of the optmized predictor (probability that future samples will 
             f_l(xi;theta)<=CVAR(y_i,1-alpha) for all i=1,..,D_{N}
     
    
- <p align="center">
-  <img src="./figs/IPM_Example_hard_vs_soft_Constraints.png" alt="Size Limit CLI" width="650">
-</p>
-   
+
    
 ### A simple Example :
   ```
