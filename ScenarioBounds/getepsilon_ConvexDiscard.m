@@ -45,9 +45,3 @@ Epsilon_target=epsilon(find(BETA1<=beta_targ,1,'first'));
 end
 
  
-% BETAPdf=0;
-% for j=0:(Nd-1)
-%     a=N-j+1
-%     b=j+1
-%     BETAPdf=BETAPdf+betapdf(1-epsilon,a,b);
-% end
