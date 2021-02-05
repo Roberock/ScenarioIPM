@@ -5,7 +5,7 @@ function Epsilon_target=getepsilon_ConvexDiscard(N,beta_targ,k,Nd)
 % reference
 % [] [] Campi, M.C., Garatti, S. A Sampling-and-Discarding Approach to
 % Chance-Constrained Optimization: Feasibility and Optimality.
-% J Optim Theory Appl 148, 257–280 (2011). https://doi.org/10.1007/s10957-010-9754-6
+% J Optim Theory Appl 148, 257â€“280 (2011). https://doi.org/10.1007/s10957-010-9754-6
 
 % beta_target: target confidence level
 % k: Number of discarded samples
@@ -26,19 +26,22 @@ if Nd>=N || k>=N
     return
 end
 %% STAT
-epsilon=linspace(10^-5,1-10^-5,10^3);
-Beta=0;  % confidence parameter
+epsilon=linspace(10^-5,1-10^-5,10^4);
+%Beta=0;  % confidence parameter
+%for j=0:(k+Nd-1)
+%    a=N-j+1;
+%    b=j+1;
+%    Beta=Beta+betapdf(1-epsilon,a,b);
+%end
+BETA1=0;
 for j=0:(k+Nd-1)
-    a=N-j+1;
-    b=j+1;
-    Beta=Beta+betapdf(1-epsilon,a,b);
+    BETA1=BETA1+nchoosek(N,j).*epsilon.^j.*(1-epsilon).^(N-j);
 end
-% for j=0:(k+Nd-1)
-%     beta=beta+nchoosek(N,j).*epsilon.^j.*(1-epsilon).^(N-j);
-% end
  
-Beta=Beta*1/((N+1)*beta(N-k+1,k+1)); % equivalent Beta= Beta*nchoosek(k+Nd-1,k) but more stable 
-Epsilon_target=epsilon(find(Beta<=beta_targ,1,'first'));
+%BETA2=Beta*1/((N+1)*beta(N-k+1,k+1)); % equivalent to the next eq. but more stable (?)
+BETA1= BETA1*nchoosek(k+Nd-1,k);
+%Epsilon_target=epsilon(find(BETA2<=beta_targ,1,'first'));
+Epsilon_target=epsilon(find(BETA1<=beta_targ,1,'first'));
 end
 
  
