@@ -19,8 +19,10 @@ The reliability of the optmized predictor (probability that future samples will 
     fl(x;theta) is a linear combination of \theta and basis functions. 
 ```    
 ```
-   IPM are built given-data from a data set of sampels of the process
-   D_{N}={(x1,y1),(x2,y2),..., (xN,yN)} assumed to be iid at each i
+   An IPM is built given-data by imposing a sample constrains on the IPM bounds.
+   The samples constraiints are deifined by N samples of the proces:
+   D_{N}={(x1,y1),(x2,y2),..., (xN,yN)} 
+   where (x_t, y_t) are assumed independent and identically distributed. 
 ```
 ##  Different methods are available in this class to optimize I(x;theta)
 ### 1) full-data enclosure (no exeption) and minimization of the area between the bounding functions
