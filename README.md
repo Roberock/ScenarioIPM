@@ -1,5 +1,9 @@
 #  Interval Predictor Model
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4678150.svg)](https://doi.org/10.5281/zenodo.4678150)
+
+
+
 An Interval Predictor Model (IPM) offers an interval-valued characterization of the uncertainty affecting the a process.
 This repository presents a matlab class to optimized the bounding functions defining an IPM.
 The reliability of the optmized predictor (probability that future samples will fall outside from the predictive bounds) is formally bounded thanks to scenario theory
