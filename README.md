@@ -1,7 +1,7 @@
 #  Interval Predictor Model
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4678150.svg)](https://doi.org/10.5281/zenodo.4678150)
-
+[![View ScenarioIPM on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://nl.mathworks.com/matlabcentral/fileexchange/90227-scenarioipm)
 
 
 An Interval Predictor Model (IPM) offers an interval-valued characterization of the uncertainty affecting the a process.
