@@ -1,7 +1,7 @@
 function [epsL, epsU] = epsLU_fast(k,N,bet)
 %% Reference Article 
 % Title Risk and complexity in scenario optimization 
-% Authors S. Garatti and ·M. C. Campi
+% Authors S. Garatti and Â·M. C. Campi
 % Journal Mathematical Programming 
 % DOI https://doi.org/10.1007/s10107-019-01446-4
  

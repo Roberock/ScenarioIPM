@@ -1,7 +1,7 @@
 #  Interval Predictor Model
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4678150.svg)](https://doi.org/10.5281/zenodo.4678150)
-[![View ScenarioIPM on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://nl.mathworks.com/matlabcentral/fileexchange/90227-scenarioipm)
+
 
 
 An Interval Predictor Model (IPM) offers an interval-valued characterization of the uncertainty affecting the a process.
@@ -106,7 +106,7 @@ IPM=IPM_Model('degreeup', 6,'degreelow',6 ,...
 beta_target=10^-5;
 Ndiscarded=0; % number of discarded samples
 Nd=12; %  number of optimization variables 
-epsilon_apriori=getepsilon_ConvexDiscard(Nsamples,beta_target,Ndiscarded,Nd) 
+epsilon_apriori=getepsilon_ConvexDiscard(Nsamples,beta_targ,Ndiscarded,Nd) 
 RelBound_apriori=[1-epsilon_apriori,1];
 
 %% optimize the model
