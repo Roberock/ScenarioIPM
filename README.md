@@ -106,7 +106,7 @@ IPM=IPM_Model('degreeup', 6,'degreelow',6 ,...
 beta_target=10^-5;
 Ndiscarded=0; % number of discarded samples
 Nd=12; %  number of optimization variables 
-epsilon_apriori=getepsilon_ConvexDiscard(Nsamples,beta_targ,Ndiscarded,Nd) 
+epsilon_apriori=getepsilon_ConvexDiscard(Nsamples,beta_target,Ndiscarded,Nd) 
 RelBound_apriori=[1-epsilon_apriori,1];
 
 %% optimize the model
