@@ -3,6 +3,10 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4678150.svg)](https://doi.org/10.5281/zenodo.4678150)
 [![View Interval predictor models and genreralization error bounds on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://nl.mathworks.com/matlabcentral/fileexchange/90227-interval-predictor-models-and-genreralization-error-bounds)
 
+Cite as
+[] Roberto Rocchetta, Qi Gao, Milan Petkovic, “Soft-constrained interval predictor models and epistemic reliability intervals: A new tool for uncertainty quantification with limited experimental data” Mechanical Systems and Signal Processing, Vol 161, 2021, 107973,
+https://doi.org/10.1016/j.ymssp.2021.107973.
+
 
 An Interval Predictor Model (IPM) offers an interval-valued characterization of the uncertainty affecting the a process.
 This repository presents a matlab class to optimized the bounding functions defining an IPM.
