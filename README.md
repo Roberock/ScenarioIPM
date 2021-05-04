@@ -5,7 +5,7 @@
 
 Cite as:
 
-> [] Roberto Rocchetta, Qi Gao, Milan Petkovic, 
+> Roberto Rocchetta, Qi Gao, Milan Petkovic, 
 > “Soft-constrained interval predictor models and epistemic reliability intervals: A new tool for uncertainty quantification with limited experimental data”
 > Mechanical Systems and Signal Processing, Vol 161, 2021, 107973.
  
